@@ -39,11 +39,11 @@ pipeline {
                 sh "docker logs --follow aws"
             }
         }
-        stage('Print Output Step') {
+        stage('Deploy log') {
             steps {
                 echo "Printing docker output"
                 sleep 2
-                sh "docker logs myapp"
+                sh "docker logs aws"
             }
         }
 }
