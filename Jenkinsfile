@@ -53,10 +53,6 @@ pipeline {
                 sh 'docker login -u $DOCKERHUB_CRED_USR -p DOCKERHUB_CRED_PSW'
             }
         }
-        stage('Push image to dockerhub'){
-            steps{
-                   
-            }
-        }
+        
 }
 }
