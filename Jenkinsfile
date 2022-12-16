@@ -56,6 +56,8 @@ pipeline {
         stage('Push image to registry'){
             steps{
                 sh '"docker push $registry:${currentBuild.number}.0"'
+                sleep 5
+                sh 'docker logout'
             }
         }
         
