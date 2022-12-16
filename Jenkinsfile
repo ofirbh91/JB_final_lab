@@ -53,6 +53,11 @@ pipeline {
                 sh 'docker login -u $DOCKERHUB_CRED_USR -p $DOCKERHUB_CRED_PSW'
             }
         }
+        stage('Push image to registry'){
+            steps{
+                sh '"docker push $registry:${currentBuild.number}.0"'
+            }
+        }
         
 }
 }
