@@ -7,6 +7,7 @@ pipeline {
         AWS_CRED = credentials('credentials')
         registry = "ofirbh91/jb_final_lab"
         dockerimage = ''
+        DOCKERHUB_CRED = credentials('DOCKER_CRED')
     }
 
     stages {
@@ -44,6 +45,17 @@ pipeline {
                 echo "Printing docker output"
                 sleep 2
                 sh "docker logs aws"
+            }
+        }
+        
+        stage('Login to dockerhub'){
+            steps{
+                sh 'docker login -u $DOCKERHUB_CRED_USR -p DOCKERHUB_CRED_PSW'
+            }
+        }
+        stage('Push image to dockerhub'){
+            steps{
+                   
             }
         }
 }
