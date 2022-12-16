@@ -13,9 +13,9 @@ pipeline {
         stage('Init') {
             steps {
                 cleanWs()
-                sh "docker -v $(which docker):/usr/bin/docker kill aws || true"
-                sh "docker -v $(which docker):/usr/bin/docker rm aws || true"
-                sh "docker -v $(which docker):/usr/bin/docker rmi -f aws || true"
+                sh "docker kill aws || true"
+                sh "docker rm aws || true"
+                sh "docker rmi -f aws || true"
             }
         }
         stage('SCM') {
