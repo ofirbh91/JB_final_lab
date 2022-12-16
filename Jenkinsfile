@@ -28,7 +28,7 @@ pipeline {
                 sleep 3
                 script{
                     dockerimage = docker.build(registry + ":${currentbuild.number}.0", "-f Dockerfile .")
-                    echo "$(dockerimage)"
+                    echo "${dockerimage}"
                 }
             }
         }
