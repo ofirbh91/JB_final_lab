@@ -27,8 +27,9 @@ pipeline {
             steps {
                 sh "cat $AWS_CRED | tee credentials"
                 sleep 3
-                sh "docker -v /var/run/docker.sock:/var/run/docker.sock docker /bin/ash -t aws ."                
-            }
+                script {
+                    dockerImage = docker.build(registry + ":${currentBuild.number}.0","-f Dockerfile .")
+                }
         }
 
     }
