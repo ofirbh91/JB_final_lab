@@ -5,7 +5,7 @@ pipeline {
     }
     environment {
         AWS_CRED = credentials('credentials')
-        registry = ofirbh91/jb_final_lab
+        registry = "ofirbh91/jb_final_lab"
     }
 
     stages {
