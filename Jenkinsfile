@@ -28,7 +28,7 @@ pipeline {
                 sh "cat $AWS_CRED | tee credentials"
                 sleep 3
                 script{
-                    dockerImage = docker.build(registry + ":${currentBuild.number}.0","-f Dockerfile .")
+                    dockerImage = docker.build(registry + ":${currentBuild.number}.0",".")
                 }
             }
         }
