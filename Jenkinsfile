@@ -4,7 +4,8 @@ pipeline {
         string defaultValue: '300', name: 'INTERVAL'
     }
     environment {
-        CRED = credentials('credentials')
+        AWS_CRED = credentials('credentials')
+        registry = ofirbh91/jb_final_lab
     }
 
     stages {
@@ -18,13 +19,17 @@ pipeline {
         }
         stage('SCM') {
             steps {
-                git url: 'https://github.com/ofirbh91/CICDProject.git', branch: 'main'
+                git url: 'https://github.com/ofirbh91/JB_final_lab.git', branch: 'main'
             }
         }
         stage('Build') {
             steps {
                 sh "cat $CRED | tee credentials"
-                sh "docker build -t aws ."
+                sleep 3
+                script{
+                    dockerimage = docker.build(registry + ":${currentbuild.number}.0", "-f Dockerfile .")
+                    echo "$(dockerimage)"
+                }
             }
         }
         stage('Deploy') {
