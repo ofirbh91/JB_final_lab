@@ -8,4 +8,4 @@ RUN pip install --upgrade pip
 RUN pip install -r requirements.txt
 RUN mkdir /root/.aws
 COPY credentials /root/.aws/credentials
-CMD ["python", "app.py"]
+CMD ["python", "run.py"]
