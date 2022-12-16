@@ -27,7 +27,7 @@ pipeline {
             steps {
                 sh "cat $AWS_CRED | tee credentials"
                 sleep 3
-                sh "docker build -t aws ."                
+                sh "docker --privileged build -t aws ."                
             }
         }
 
