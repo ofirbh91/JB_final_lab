@@ -35,7 +35,7 @@ pipeline {
     }
         stage('Deploy') {
             steps {
-                sh "docker run -itd --name aws --env INTERVAL=${params.INTERVAL} $registry:${currentBuild.number}"
+                sh "docker run -itd --name aws --env INTERVAL=${params.INTERVAL} $registry:${currentBuild.number}.0"
                 sh "docker logs --follow aws"
             }
         }
