@@ -50,7 +50,7 @@ pipeline {
         
         stage('Login to dockerhub'){
             steps{
-                sh 'docker login -u $DOCKERHUB_CRED_USR -p DOCKERHUB_CRED_PSW'
+                sh 'docker login -u $DOCKERHUB_CRED_USR -p $DOCKERHUB_CRED_PSW'
             }
         }
         
