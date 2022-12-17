@@ -55,7 +55,7 @@ pipeline {
         }
         stage('Push image to registry'){
             steps{
-                sh (script : """docker push aws""", returnStdout: false)
+                sh (script : """docker push $registry:${currentBuild.number}.0""", returnStdout: false)
                 sleep 5
                 sh 'docker logout'
             }
