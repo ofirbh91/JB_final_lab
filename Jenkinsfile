@@ -67,6 +67,29 @@ pipeline {
 		sh 'chmod a+x /usr/local/bin/yq'
 			}
 		}
-        
+	    
+        stage('Edit Helm') {
+            steps {
+                dir('/home/jenkins/workspace/JB_final_lab/aws-helm/') {
+                sh (script : """ yq -i \'.image.repository = \"$DOCKER_REGISTRY\"\' values.yaml """, returnStdout: false)
+                sh (script : """ yq -i \'.image.tag = \"${currentBuild.number}.0\"\' values.yaml """, returnStdout: false)
+                }
+            }
+        }
+ 
+ 	stage('Git Push to main') {
+            steps {
+                script {
+                	withCredentials([gitUsernamePassword(credentialsId: 'github', gitToolName: 'Default')]) {
+				dir('/home/jenkins/workspace/ofirbh91/aws-helm/') {
+				sh (script : """ git config --global user.name \"ofirbh91\" """)
+				sh (script : """ git config --global user.email ofirbh91@gmail.com """)
+				sh (script : """ git checkout main """)
+				sh (script : """ git add . """)
+				sh (script : """ git commit -m \"Updating Docker version" """)
+				sh (script : """ git push origin main """)
+				}
+			}
+		}
 }
 }
