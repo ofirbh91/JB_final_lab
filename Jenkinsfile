@@ -71,7 +71,7 @@ pipeline {
         stage('Edit Helm') {
             steps {
                 dir('/home/jenkins/workspace/JB_final_lab/aws-helm/') {
-                sh (script : """ yq -i \'.image.repository = \"$DOCKER_REGISTRY\"\' values.yaml """, returnStdout: false)
+                sh (script : """ yq -i \'.image.repository = \"$registry\"\' values.yaml """, returnStdout: false)
                 sh (script : """ yq -i \'.image.tag = \"${currentBuild.number}.0\"\' values.yaml """, returnStdout: false)
                 }
             }
