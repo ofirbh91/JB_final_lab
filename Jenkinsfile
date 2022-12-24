@@ -84,7 +84,6 @@ pipeline {
 				dir('/home/jenkins/workspace/ofirbh91/aws-helm/') {
 				sh (script : """ git config --global user.name \"ofirbh91\" """)
 				sh (script : """ git config --global user.email ofirbh91@gmail.com """)
-				sh (script : """ git checkout main """)
 				sh (script : """ git add . """)
 				sh (script : """ git commit -m \"Updating Docker version" """)
 				sh (script : """ git push origin main """)
