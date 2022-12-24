@@ -60,7 +60,7 @@ pipeline {
                 sh 'docker logout'
             }
         }
-        stge('install yq'){
+        stage('install yq'){
 			steps{
 				sh 'apt install wget'
 			}
