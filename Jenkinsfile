@@ -61,8 +61,10 @@ pipeline {
             }
         }
         stage('install yq'){
-			steps{
-				sh 'apt install wget'
+	    steps{
+		sh 'apt install wget'
+		sh 'wget -qO /usr/local/bin/yq https://github.com/mikefarah/yq/releases/latest/download/yq_linux_amd64'
+		sh 'chmod a+x /usr/local/bin/yq'
 			}
 		}
         
